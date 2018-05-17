@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elon.item.dao.ItemMapper">
+
+    <sql id="baseColumn">
+        item_id,item_type,stock,item_name,item_img
+    </sql>
+
+    <resultMap id="itemMap" type="com.elon.item.entity.Item">
+        <result column="item_id" property="itemId" javaType="java.lang.Integer"/>
+        <result column="item_type" property="itemType" javaType="java.lang.Integer"/>
+        <result column="stock" property="stock" javaType="java.lang.Integer"/>
+        <result column="item_name" property="itemName" javaType="java.lang.String"/>
+        <result column="item_img" property="itemImg" javaType="java.lang.String"/>
+
+    </resultMap>
+
+    <select id="query" resultMap="itemMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="baseColumn"/>
+        FROM t_item WHERE item_id = #{k}
+    </select>
+
+</mapper>
